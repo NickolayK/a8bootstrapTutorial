@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
- 
+  userName :string= '';
+
+  resetUser(){
+    console.log(this.userName)
+    this.userName = '';
+  }
 }
