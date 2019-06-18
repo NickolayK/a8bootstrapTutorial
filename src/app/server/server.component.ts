@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-server',
@@ -8,13 +8,21 @@ import { Component, OnInit } from '@angular/core';
 export class ServerComponent implements OnInit {
 
   serverId :number = 10;
-  serverStatus :string = 'offline'
-  constructor() { }
+  serverStatus :string ;
+  @Input() serverName :string
+  constructor() { 
+
+    this.serverStatus = Math.random() > 0.5 ? 'online' : 'offline'
+
+  }
 
   ngOnInit() {
   }
 
   getServerStatus(){
     return this.serverStatus
+  }
+  getColor(){
+      return this.serverStatus === 'online' ?  'green' : 'red';
   }
 }

@@ -12,6 +12,9 @@ export class ServersComponent implements OnInit {
   allowBewServer : boolean = false;
   serverCreationStatus :string = 'No server created yet';
   serverName :string = 'Test server name ';
+  serverCreated : boolean = false;
+  servers = ['TestServer', 'TestServer 2 '];
+
   constructor() {
 
     setTimeout(()=>{
@@ -23,7 +26,9 @@ export class ServersComponent implements OnInit {
   }
 
   onCreateServer(){
-    this.serverCreationStatus = `server was created , Name is : ${ this.serverName}`;
+    // this.serverCreationStatus = `server was created , Name is : ${ this.serverName}`;
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
   }
 
   onUpdateServeName(event : any){
