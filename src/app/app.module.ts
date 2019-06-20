@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 
 import {FormsModule} from '@angular/forms';
+import { CockpitComponent } from './cockpit/cockpit.component';
+import { ServerElemComponent } from './server-elem/server-elem.component';
 
 
 
@@ -15,6 +17,8 @@ import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    CockpitComponent,
+    ServerElemComponent,
   ],
   imports: [
     BrowserModule,
