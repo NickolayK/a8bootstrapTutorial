@@ -6,18 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  serverElements = [{type : 'server' , name : "TestServer", content : 'content'}];
+  evenNumbers:Array<number> = [];
+  oddNumbers:Array<number> = [];
+  
 
-
-  onAddServer(event){
-    
-    this.serverElements.push(event);
-  }
-
-  onChangeFirst(){
-    this.serverElements[0].name = 'new name';
-  }
-  destroyFirt(){
-    this.serverElements.splice( 0,1);
+  onIntervalFired(event){
+    console.log(event);
+    event % 2 === 0 ? this.evenNumbers.push(event) : this.oddNumbers.push(event);
   }
 }
