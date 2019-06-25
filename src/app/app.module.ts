@@ -17,7 +17,10 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component'
 
-import { DropDownDerective } from './shared/dropDown.directive'
+import { DropDownDerective } from './shared/dropDown.directive';
+
+import { RecipeService } from './shared/services/recipe.service';
+import { ShopListService } from './shared/services/shoplist.service'
 
 
 @NgModule({
@@ -30,14 +33,16 @@ import { DropDownDerective } from './shared/dropDown.directive'
     RecipeDetailComponent,
     RecipesComponent,
     ShoppingEditComponent,
-    DropDownDerective
+    DropDownDerective,
+    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [RecipeService , ShopListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
