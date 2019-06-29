@@ -20,7 +20,9 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { DropDownDerective } from './shared/dropDown.directive';
 
 import { RecipeService } from './shared/services/recipe.service';
-import { ShopListService } from './shared/services/shoplist.service'
+import { ShopListService } from './shared/services/shoplist.service';
+import { RecipeMessageComponent } from './recipes/recipe-message/recipe-message.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component'
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { ShopListService } from './shared/services/shoplist.service'
     RecipesComponent,
     ShoppingEditComponent,
     DropDownDerective,
+    RecipeMessageComponent,
+    RecipeEditComponent,
     
 
   ],

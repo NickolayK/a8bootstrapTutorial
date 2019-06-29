@@ -7,13 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  displayComponent : string  = 'shoppingList';
+  // displayComponent : string  = 'shoppingList';
 
-  onFeatureSelected(event:string){
+  // onFeatureSelected(event:string){
 
-    this.displayComponent = event ; 
+  //   this.displayComponent = event ; 
 
-  }
+  // }
 
  
 }

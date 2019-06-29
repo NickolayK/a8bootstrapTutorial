@@ -5,6 +5,7 @@ export class Recipe {
         public name:string ,
         public description :string, 
         public imgPath :string,
+        public id : number, 
         public ingredients : Ingredient[]){
 
    }
