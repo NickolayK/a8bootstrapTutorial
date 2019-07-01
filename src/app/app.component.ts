@@ -1,19 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UserService } from './user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit  , OnDestroy{
 
-  // displayComponent : string  = 'shoppingList';
+  userActivated = false ;
+  activatedSubscription : Subscription;
 
-  // onFeatureSelected(event:string){
+  constructor( private userService : UserService){
+    
+  }
 
-  //   this.displayComponent = event ; 
+  ngOnInit(){
+    this.activatedSubscription =  this.userService.activatedEmmiter.subscribe( 
+      (didActivated :boolean)=>{
+        
+        this.userActivated = didActivated;
+      }
+    )
+  }
 
-  // }
+  ngOnDestroy() : void{
+    this.activatedSubscription.unsubscribe();
 
- 
+  }
 }
