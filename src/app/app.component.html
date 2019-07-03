@@ -1,67 +1,46 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form [formGroup]="signUpForm" (ngSubmit)="onSumbit()">
-        <div formGroupName="userData">
+      <!--
+          Create a Form with the following Controls and Validators
+          1) Project Name (should not be empty)
+          2) Mail (should not be a empty and a valid email)
+          3) Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished'
+          4) Submit Button
 
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input
-                  type="text"
-                  id="username" formControlName="username"
-                  class="form-control">
-              </div>
-              <span 
-              *ngIf="!signUpForm.get('userData.username').valid && signUpForm.get('userData.username').touched"
-               class="help-block"> 
-               <span class="help-block" 
-                  *ngIf="signUpForm.get('userData.username').errors['nameIsForbidden']">
-                        this name is invalid
-               </span>
-               <span class="help-block" *ngIf="signUpForm.get('userData.username').errors['required']">
-                       This field is required
-               </span>
-               </span>
-              <div class="form-group">
-                <label for="email">email</label>
-                <input
-                formControlName="email"
-                  type="text"
-                  id="email"
-                  class="form-control">
-              </div>
-              <span *ngIf="!signUpForm.get('userData.email').valid && signUpForm.get('userData.email').touched" class="help-block">
-              
-                <span *ngIf="!signUpForm.get('userData.email').valid && signUpForm.get('userData.email').errors " class="help-block">
-                  Please enter a valid email
-                </span>
-                <span *ngIf="signUpForm.get('userData.email').errors && signUpForm.get('userData.email').errors['emailIsForbbiden'] " class="help-block">
-                  This email already used
-                </span>
-              
-              </span>
-        </div>
-  
-        <div class="radio" *ngFor="let gender of genders">
-          <label>
-            <input formControlName="gender"
-              type="radio"
-              [value]="gender">{{ gender }}
-          </label>
-        </div>
-        <div formArrayName="hobbies">
-          <h4> Your Hobbies</h4>
-          <button class="btn btn-default" type="button" (click)="addHobbie()">Add hobbie</button>
-          <div class="form-group" 
-          *ngFor="let hobbie of signUpForm.get('hobbies').controls; let i = index">
-            <input type="text" [formControlName]='i' class="form-control">
-            
-          </div>
-        </div>
-        <span *ngIf="!signUpForm.valid && signUpForm.touched"
-        class="help-block"> Please enter a valid data</span>
-        <button class="btn btn-primary" type="submit" [disabled]="!signUpForm.valid">Submit</button>
-      </form>
+          Add your own Validator which doesn't allow "Test" as a Project Name
+
+          Also implement that Validator as an async Validator (replace the other one)
+
+          Upon submitting the form, simply print the value to the console
+      -->
+ <form  [formGroup]='projectForm' (ngSubmit)=onSubmit()>
+  <div class="form-group">
+     <label for="name"> Project NAme  </label>
+    <input type="text"  class="form-control" id="name" formControlName='name'>
+
+    <span *ngIf="!projectForm.get('name').valid &&  projectForm.get('name').touched"> 
+        <span *ngIf="projectForm.get('name').errors &&  projectForm.get('name').errors['required']  " > Project name Required</span>
+     
+        <span *ngIf=" projectForm.get('name').errors && projectForm.get('name').errors['forbbidenName']   " > Project doesn't allow this name </span>
+    </span>
+    
+  </div>
+  <div class="form-group">
+    <label for="email"> Email </label>
+    <input type="email" id="email"  class="form-control" formControlName='email'>
+    <span *ngIf="!projectForm.get('email').valid &&  projectForm.get('email').touched"> invalid mail</span>
+  </div>
+  <div class="form-group">
+    <label for="status"> Project Status  </label>
+    <select   id="status" formControlName='status' class="form-control">
+      <option value="stable"> Stable</option>
+      <option value="critical">Critical</option>
+      <option value="finished"> Finished</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!projectForm.valid"> Save project</button>
+ </form>
     </div>
   </div>
 </div>
