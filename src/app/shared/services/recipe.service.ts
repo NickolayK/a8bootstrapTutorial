@@ -2,10 +2,14 @@
 import { Recipe } from '../models/recipe.model';
 import { ShopListService } from './shoplist.service';
 import { Ingredient } from '../models/ingredient.model';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 
-
+@Injectable()
 export class RecipeService {
+
+    recipeChanged = new Subject<Recipe[]>();
 
     
     private recipes :Recipe[] = [
@@ -45,5 +49,37 @@ export class RecipeService {
             }
         });
         return recipe;
+    }
+    updateRecipeById(id:number , recipe :Recipe){
+        let updatedRecipe = this.recipes.find( (item)=>{
+               if(item.id === id){
+                   return true;
+               }
+        });
+        let index = this.recipes.indexOf(updatedRecipe);
+        if(index !== -1){
+            this.recipes.splice( index , 1 , recipe)
+        }
+
+    this.recipeChanged.next(this.recipes.slice());
+      
+    }
+    addRecipe(recipe :Recipe){
+        this.recipes.push(recipe);
+        this.recipeChanged.next(this.recipes.slice());
+    }
+    onDeleteById( id :number){
+
+        let updatedRecipe = this.recipes.find((item) => {
+            if (item.id === id) {
+                return true;
+            }
+        });
+        let index = this.recipes.indexOf(updatedRecipe);
+        if (index !== -1) {
+            this.recipes.splice(index, 1)
+        }
+
+        this.recipeChanged.next(this.recipes.slice());
     }
 }

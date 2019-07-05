@@ -17,7 +17,9 @@ const routes: Routes = [
     
 
   ]},
-  { path : 'shopping-list' , component : ShoppingListComponent},
+  { path : 'shopping-list' , component : ShoppingListComponent , children:[
+    
+  ]},
   {path : '' ,  redirectTo : '/recipes' ,pathMatch : 'full' }
 ];
 
