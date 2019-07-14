@@ -1,4 +1,5 @@
 import { Component ,Output , EventEmitter } from '@angular/core';
+import { DataStorageService } from '../shared/services/data-storage.service';
 
 @Component({
 
@@ -16,5 +17,14 @@ export class HeaderComponent {
     //     this.fireEvent.emit(feature);
 
     // }
+        constructor( private dataStorageService : DataStorageService ) {
 
+        }
+
+        onSaveData(){
+            this.dataStorageService.storeRecipe(); 
+        } 
+        onFetchData(){
+            this.dataStorageService.fetchData().subscribe();
+        }
 }

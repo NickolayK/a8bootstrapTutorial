@@ -6,7 +6,7 @@ export class Recipe {
         public description :string, 
         public imgPath :string,
         public id : number, 
-        public ingredients : Ingredient[]){
+        public ingredients : Ingredient[] = []){
 
    }
 }
