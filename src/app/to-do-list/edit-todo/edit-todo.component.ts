@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { TodoService } from 'src/app/todo.service';
 import { Todo } from 'src/app/models/todo.model';
@@ -16,39 +16,54 @@ export class EditTodoComponent implements OnInit , OnDestroy {
   editMode = false;
   editedTodo : Todo;
 
-  @ViewChild('myForm' , {static : false}) myForm :NgForm ;
+  reactiveForm : FormGroup;
+
   @Output() cancelEdit = new EventEmitter();
 
   constructor( private todoService : TodoService) { }
 
   ngOnInit() {
+    this.initForm();
     this.subscription = this.todoService.startedEditing.subscribe( (i : number)=>{
 
       this.editedTodoIndex = i;
       this.editMode = true;
       this.editedTodo = this.todoService.getTodoByIndex(i);
-
-      this.myForm.setValue({
-        'name': this.editedTodo.name,
-        'date': this.editedTodo.date
-      });
+      this.initForm();
+      
     })
   }
 
-  onAddTodo(form:NgForm){
-    let todo = new Todo(
-      form.value.name,
-      form.value.date
-    )
+  initForm(){
+    let name = '',
+        date = '';
+
+    if (this.editMode){
+       name = this.editedTodo.name;
+       date = this.editedTodo.date;
+    }
+
+    this.reactiveForm = new FormGroup({
+
+      'name' : new FormControl(name , Validators.required),
+      'date': new FormControl(date , Validators.required),
+
+    });
+    
+  }
+
+  onAddTodo(){
+
+    let todo = new Todo( this.reactiveForm.value.name, this.reactiveForm.value.date )
 
     if (this.editMode) {
       this.todoService.updateTodoByIndex(this.editedTodoIndex, todo);
       
     } else {
       this.todoService.addTodo(todo);
-      
     }
-    this.myForm.reset();
+
+    this.reactiveForm.reset();
     this.editMode = false;
     this.cancelEdit.emit();
   }
@@ -59,7 +74,6 @@ export class EditTodoComponent implements OnInit , OnDestroy {
 
   onReset(){
     this.editMode = false;
-    this.myForm.reset();
     this.cancelEdit.emit();
   }
 

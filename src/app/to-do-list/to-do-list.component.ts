@@ -62,4 +62,15 @@ export class ToDoListComponent implements OnInit, OnDestroy{
     this.subscription.unsubscribe();
   }
 
+  search(value :string){
+
+    if(value){
+      this.todoService.searchToDo(value);
+    }else{
+      this.toDoList = this.todoService.getTodos();
+    }
+    
+    
+  }
+
 }

@@ -2,6 +2,11 @@
       <div class="col-md-12">
             <button class="btn - btn-primary" (click)=sortByName()> sort by name </button>
             <button class="btn - btn-primary" (click)=sortByDate()> sort by date </button>
+             
+                        <input class="form-control"  type="text" (keyup.enter)="search(searchIpnut.value)" #searchIpnut>
+                        <button class="btn btn-primary" (click)=search(searchIpnut.value)> Search </button>
+             
+             
       </div>
 </div>
 

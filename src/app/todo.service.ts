@@ -39,4 +39,11 @@ export class TodoService {
   getTodoByIndex( index : number){
     return this.todoList[index];
   }
+
+  searchToDo(value:string){
+    let lowerCase = value.toLocaleLowerCase();
+     let filtered:Todo[] =  this.todoList.filter( (todo)=>  todo.date.toLocaleLowerCase().includes(lowerCase) || todo.name.toLocaleLowerCase().includes(lowerCase) );
+
+     this.toDoChange.next(filtered);
+  }
 }
