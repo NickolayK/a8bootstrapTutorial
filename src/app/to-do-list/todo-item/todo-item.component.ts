@@ -13,12 +13,9 @@ export class TodoItemComponent implements OnInit {
   @Input() index : number;
   @Input() active : boolean;
   
-  
-
   constructor( private todoService : TodoService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onDelete(){
       this.todoService.deleteTodo(this.index);

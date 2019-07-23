@@ -19,9 +19,6 @@ import { EditTodoComponent } from './to-do-list/edit-todo/edit-todo.component';
     ToDoListComponent,
     TodoItemComponent,
     EditTodoComponent,
-
-    
-
   ],
   imports: [
     BrowserModule,

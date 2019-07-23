@@ -28,7 +28,6 @@ export class EditTodoComponent implements OnInit , OnDestroy {
       this.editMode = true;
       this.editedTodo = this.todoService.getTodoByIndex(i);
 
-        
       this.myForm.setValue({
         'name': this.editedTodo.name,
         'date': this.editedTodo.date
@@ -60,11 +59,8 @@ export class EditTodoComponent implements OnInit , OnDestroy {
 
   onReset(){
     this.editMode = false;
-   
     this.myForm.reset();
     this.cancelEdit.emit();
-
   }
-
 
 }
