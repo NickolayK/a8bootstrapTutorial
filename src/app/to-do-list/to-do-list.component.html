@@ -1,0 +1,9 @@
+
+   <ul class="list-group">
+      <li class="list-group-item"
+         *ngFor='let todo of toDoList; let i = index;'>
+          <app-todo-item [todo]='todo' ></app-todo-item>
+      </li>
+   </ul>
+
+   

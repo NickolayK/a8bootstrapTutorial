@@ -7,38 +7,17 @@ import { AppComponent } from './app.component';
 
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HeaderComponent } from './header/header.component'
+import { ToDoListComponent } from './to-do-list/to-do-list.component';
+import { TodoItemComponent } from './to-do-list/todo-item/todo-item.component';
 
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-
-
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component'
-
-import { DropDownDerective } from './shared/dropDown.directive';
-
-import { RecipeService } from './shared/services/recipe.service';
-import { ShopListService } from './shared/services/shoplist.service';
-import { RecipeMessageComponent } from './recipes/recipe-message/recipe-message.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    ShoppingListComponent,
-    RecipeListComponent,
-    RecipeItemComponent,
-    RecipeDetailComponent,
-    RecipesComponent,
-    ShoppingEditComponent,
-    DropDownDerective,
-    RecipeMessageComponent,
-    RecipeEditComponent,
+    ToDoListComponent,
+    TodoItemComponent,
+
     
 
   ],
@@ -49,7 +28,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [RecipeService , ShopListService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
