@@ -1,9 +1,23 @@
+<div class="row">
 
-   <ul class="list-group">
-      <li class="list-group-item"
-         *ngFor='let todo of toDoList; let i = index;'>
-          <app-todo-item [todo]='todo' ></app-todo-item>
-      </li>
-   </ul>
+      <div class="col-md-12">
+            <button class="btn - btn-primary" (click)=sortByName()> sort by name </button>
+            <button class="btn - btn-primary" (click)=sortByDate()> sort by date </button>
+      </div>
 
-   
+</div>
+
+<ul class="list-group">
+
+      <app-todo-item *ngFor='let todo of toDoList; let i = index;' [todo]='todo' [index]='i'
+            [active]='activeTodo === todo' (click)="onEditTodo(todo)"></app-todo-item>
+
+</ul>
+
+<div class="row">
+
+      <div class="col-md-12">
+            <app-edit-todo (cancelEdit)='onCancelEdit()'></app-edit-todo>
+      </div>
+      
+</div>

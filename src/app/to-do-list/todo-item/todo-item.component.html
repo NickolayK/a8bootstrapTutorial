@@ -1,17 +1,25 @@
-<div class="row"> 
+<li class="list-group-item" [ngClass]="{'list-group-item-success' : this.todo.done, 'active': active}">
+    <div class="row">
 
-  <div class="col-xs-4">
-      {{ todo.name}}
-  </div>
+        <div class="col-xs-4">
+            {{ todo.name}}
+        </div>
 
-  <div class="col-xs-4">
-      {{ todo.date}}
-  </div>
+        <div class="col-xs-4">
+            {{ todo.date}}
+        </div>
 
-  <div class="col-xs-2">
-      <button class="btn btn-primary"> mark as Done</button>
-  </div>
-  <div class="col-xs-2">
-      <button class="btn btn-danger"> Delete</button>
-  </div>
-</div>
+        <div class="col-xs-2">
+            <button class="btn btn-primary" (click)='onMark($event)'>
+                <span *ngIf='!this.todo.done ; else undone'>
+                    mark as Done
+                </span>
+
+                <ng-template #undone>Undone</ng-template>
+            </button>
+        </div>
+        <div class="col-xs-2">
+            <button class="btn btn-danger" (click)=onDelete()>X</button>
+        </div>
+    </div>
+</li>

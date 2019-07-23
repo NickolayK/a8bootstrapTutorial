@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Todo } from 'src/app/models/todo.model';
+import { TodoService } from 'src/app/todo.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -7,11 +9,23 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TodoItemComponent implements OnInit {
 
-  @Input() todo :any;
+  @Input() todo :Todo;
+  @Input() index : number;
+  @Input() active : boolean;
+  
+  
 
-  constructor() { }
+  constructor( private todoService : TodoService) { }
 
   ngOnInit() {
   }
 
+  onDelete(){
+      this.todoService.deleteTodo(this.index);
+  }
+
+  onMark(event:MouseEvent){
+    event.stopPropagation();
+    this.todo.done = !this.todo.done;
+  }
 }
