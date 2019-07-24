@@ -1,5 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Todo} from '../models/todo.model'
+import { 
+  Component,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
+import { Todo } from '../models/todo.model'
 import { TodoService } from '../todo.service';
 import { Subscription } from 'rxjs';
 
@@ -10,27 +14,32 @@ import { Subscription } from 'rxjs';
 })
 export class ToDoListComponent implements OnInit, OnDestroy{
 
-  toDoList :Todo[] =  [];
-  activeTodo : Todo;
+  toDoList: Todo[] = [];
+  activeTodo: Todo;
+  subscription: Subscription;
+  searchText: string;
+  searchDate: string;
 
-  subscription: Subscription
-
-  constructor( private todoService :TodoService) { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit() {
-    this.toDoList = this.todoService.getTodos();
-
-    this.subscription =  this.todoService.toDoChange.subscribe( (todos:Todo[])=>{
+    this.getTodoList();
+    this.subscription =  this.todoService.toDoChange$.subscribe((todos:Todo[])=>{
       this.toDoList = todos;
-    } )
+    });
   }
 
-  onEditTodo(todo:Todo){
+  getTodoList() {
+    this.toDoList = this.todoService.getTodos();
+  }
+
+  onEditTodo(todo: Todo) {
     this.activeTodo = todo;
     let index = this.todoService.getTodos().indexOf(todo);
-    this.todoService.startedEditing.next(index);
+    this.todoService.startedEditing$.next(index);
   }
-  onCancelEdit(){
+
+  onCancelEdit() {
     this.activeTodo = null;
   }
 
@@ -43,7 +52,7 @@ export class ToDoListComponent implements OnInit, OnDestroy{
       } else {
         return 0;
       }
-    })
+    });
   }
 
   sortByDate() {
@@ -55,22 +64,26 @@ export class ToDoListComponent implements OnInit, OnDestroy{
       } else {
         return 0;
       }
-    })
+    });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  search(value :string){
+  searchByDate() {
+      this.todoService.searchToDoByDate(this.searchDate);
 
-    if(value){
-      this.todoService.searchToDo(value);
-    }else{
-      this.toDoList = this.todoService.getTodos();
-    }
-    
-    
+      if(!this.searchDate) {
+        this.getTodoList();
+      } 
   }
 
+  searchByText() {
+    this.todoService.searchToDoByText(this.searchText);
+
+    if(!this.searchText) {
+      this.getTodoList();
+    }
+  }
 }
