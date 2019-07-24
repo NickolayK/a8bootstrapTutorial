@@ -11,7 +11,7 @@ export class TodoService {
   startedEditing$ = new Subject<number>();
   toDoChange$ = new Subject<Todo[]>();
 
-  private todoList : Todo[] = [ 
+  private todoList: Todo[] = [ 
     new Todo('FirstTodo', '1992-10-03'), 
     new Todo('SecondTodo', '1992-07-03'),
   ];
@@ -33,7 +33,7 @@ export class TodoService {
   }
 
   deleteTodo(i: number) {
-    this.todoList.splice( i , 1);
+    this.todoList.splice(i, 1);
     this.toDoChange$.next(this.todoList.slice());
   }
 

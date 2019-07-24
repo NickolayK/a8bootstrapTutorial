@@ -19,7 +19,7 @@ import { Todo } from 'src/app/models/todo.model';
   templateUrl: './edit-todo.component.html',
   styleUrls: ['./edit-todo.component.scss']
 })
-export class EditTodoComponent implements OnInit , OnDestroy {
+export class EditTodoComponent implements OnInit, OnDestroy {
 
   @Output() cancelEdit = new EventEmitter();
   subscription: Subscription;
@@ -32,13 +32,13 @@ export class EditTodoComponent implements OnInit , OnDestroy {
 
   ngOnInit() {
     this.initForm();
-    this.subscription = this.todoService.startedEditing$.subscribe( (i: number)=>{
+    this.subscription = this.todoService.startedEditing$.subscribe((i: number)=>{
 
       this.editedTodoIndex = i;
       this.editMode = true;
       this.editedTodo = this.todoService.getTodoByIndex(i);
       this.initForm();
-    })
+    });
   }
 
   initForm() {
