@@ -41,6 +41,8 @@ export class ToDoListComponent implements OnInit, OnDestroy{
 
   onCancelEdit() {
     this.activeTodo = null;
+    this.searchDate = '';
+    this.searchText = '';
   }
 
   sortByName() {
