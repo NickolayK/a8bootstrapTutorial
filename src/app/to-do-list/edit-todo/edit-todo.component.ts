@@ -77,5 +77,6 @@ export class EditTodoComponent implements OnInit, OnDestroy {
   onReset() {
     this.editMode = false;
     this.cancelEdit.emit();
+    this.reactiveForm.reset();
   }
 }

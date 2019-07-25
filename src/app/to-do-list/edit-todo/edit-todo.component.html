@@ -10,6 +10,15 @@
           <input  type="text" 
                   class="form-control"  
                   formControlName="name">
+
+          <span  *ngIf="!reactiveForm.get('name').valid && reactiveForm.get('name').touched"
+                  class="help-block"> 
+    
+              <span  *ngIf="reactiveForm.get('name').errors['required']" 
+                      class="help-block">
+                      This field is required
+              </span>
+          </span>                 
       </div>
 
       <div class="col-sm-4 form-group">
@@ -18,6 +27,15 @@
           <input  type="date"  
                   class="form-control" 
                   formControlName="date" >
+
+          <span  *ngIf="!reactiveForm.get('date').valid && reactiveForm.get('date').touched"
+                  class="help-block"> 
+    
+              <span  *ngIf="reactiveForm.get('date').errors['required']" 
+                      class="help-block">
+                      Date field is required
+              </span>
+          </span>                   
       </div>
 
     </div>
