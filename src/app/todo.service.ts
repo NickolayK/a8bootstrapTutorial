@@ -42,14 +42,28 @@ export class TodoService {
   }
 
   searchToDoByDate(value: string) {
-     let lowerCase = value.toLocaleLowerCase();
-     let filtered:Todo[] =  this.todoList.filter((todo) =>  todo.date.toLocaleLowerCase().includes(lowerCase));
+     let filtered: Todo[] =  this.todoList.filter((todo) =>  todo.date.includes(value));
      this.toDoChange$.next(filtered);
+  }
+
+  searchByFilters(date: string , text: string) {
+    let lowerCaseText = text.toLocaleLowerCase();
+
+    if(date && text) {
+      const filtered: Todo[] = this.todoList.filter((todo) => !!todo.date.includes(date) && todo.name.toLocaleLowerCase().includes(lowerCaseText));
+      this.toDoChange$.next(filtered);
+    }else if(date) {
+      this.searchToDoByDate(date);
+    }else if(text) {
+      this.searchToDoByText(text);
+    }else {
+      this.toDoChange$.next(this.todoList);
+    }  
   }
 
   searchToDoByText(value: string) {
     let lowerCase = value.toLocaleLowerCase();
-    let filtered:Todo[] =  this.todoList.filter( (todo)=>  todo.name.toLocaleLowerCase().includes(lowerCase));
+    let filtered: Todo[] =  this.todoList.filter((todo) => todo.name.toLocaleLowerCase().includes(lowerCase));
     this.toDoChange$.next(filtered);
   }
 }

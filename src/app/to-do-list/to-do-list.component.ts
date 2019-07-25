@@ -17,8 +17,8 @@ export class ToDoListComponent implements OnInit, OnDestroy{
   toDoList: Todo[] = [];
   activeTodo: Todo;
   subscription: Subscription;
-  searchText: string;
-  searchDate: string;
+  searchText = '';
+  searchDate = '';
 
   constructor(private todoService: TodoService) { }
 
@@ -71,19 +71,9 @@ export class ToDoListComponent implements OnInit, OnDestroy{
     this.subscription.unsubscribe();
   }
 
-  searchByDate() {
-      this.todoService.searchToDoByDate(this.searchDate);
-
-      if(!this.searchDate) {
-        this.getTodoList();
-      } 
+  searchByFilters() {
+    this.todoService.searchByFilters(this.searchDate , this.searchText); 
   }
 
-  searchByText() {
-    this.todoService.searchToDoByText(this.searchText);
 
-    if(!this.searchText) {
-      this.getTodoList();
-    }
-  }
 }

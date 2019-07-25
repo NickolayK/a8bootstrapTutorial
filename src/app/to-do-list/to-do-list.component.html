@@ -13,13 +13,13 @@
             <input class="form-control"
                    type="text" 
                    placeholder="search by text" 
-                   (keyup)="searchByText()"  
+                   (keyup)="searchByFilters()"  
                    [(ngModel)]="searchText">
 
             <input class="form-control"  
-                   type="text" 
+                   type="date" 
                    placeholder="search by date"
-                   (keyup)="searchByDate()" 
+                   (change)="searchByFilters()" 
                    [(ngModel)]="searchDate">   
       </div>
 </div>
