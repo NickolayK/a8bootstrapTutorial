@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-xs-3">
+        <span>
+          <a class="btn btn-success" 
+             [routerLink]="['']" >Back to Search
+          </a>
+        </span>
+    </div>
+    <div class="col-xs-6">
+        <h3> Bookmarks</h3>
+    </div>
+    <div class="col-xs-3"></div>
+</div>
+
+<hr>
+  <app-bookmark-item *ngFor="let bookmark of bookmarks;let i = index" 
+                      [bookmark]='bookmark' [index]="i"
+                      (removeFromBookMark)='onRemoveFromBookMark($event);'>
+  </app-bookmark-item>
+

@@ -1,0 +1,19 @@
+<div class="row">
+    <h3> Find Apartment </h3>
+    <div class="col-xs-5 col-xs-offset-3">
+        <div class="input-group">
+          <input type="text" 
+                 class="form-control" 
+                 (keyup.enter)='onFindApartment()' 
+                 placeholder="Search for..." 
+                 [(ngModel)]='searchTerm'>
+
+          <span class="input-group-btn">
+            <button class="btn btn-primary" (click)='onFindApartment()' type="button">Go!</button>
+          </span>
+        </div>     
+      </div>
+      <div class="col-xs-1">
+          <span><a class="btn btn-success" [routerLink]="['bookmarks']" >Bookmarks</a></span>
+      </div>
+  </div>

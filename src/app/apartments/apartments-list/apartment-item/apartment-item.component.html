@@ -1,0 +1,22 @@
+   <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img [src]="apartment.img_url" alt="apartment.title">
+        <div class="caption">
+          <h4>{{apartment.title}}</h4>
+          <p> Price : {{ apartment.price_formatted + ' - ' + apartment.price_type }} </p>
+          <p>
+            <span>
+              <a class="btn btn-primary" [routerLink]="[index+'/detail']" >Detail</a>
+            </span>
+
+            <button  class="btn" 
+                     [ngClass]="{ 'btn-success': !inBookMark, 'btn-danger': inBookMark }" 
+                     (click)=onBookMark()>
+              <span *ngIf='!inBookMark ; else remove'>Add Bookmark</span>
+              <ng-template #remove>Remove Bookmark</ng-template>
+            </button>
+          
+          </p>
+        </div>
+      </div>
+    </div>

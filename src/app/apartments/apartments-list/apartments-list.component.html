@@ -1,0 +1,13 @@
+<div class="row">
+    <app-apartment-item *ngFor="let apartment of apartments; let i = index;" 
+                        [apartment]='apartment' 
+                        [index]='i' 
+                        [inBookMark]='bookmarks.indexOf(apartment) !== -1' 
+                        (addBookMark)="onAddBookMark($event)">
+  </app-apartment-item>
+
+    <div class="col-xs-12">
+        <hr>
+        <button class="btn btn-primary"  *ngIf="apartments.length" (click)='onShowMore()'>Show more</button>
+    </div>
+</div>
