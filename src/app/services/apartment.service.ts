@@ -4,6 +4,7 @@ import {
   HttpParams
 } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { Apartment } from '../shared/apartment.interface'
 
 @Injectable({
   providedIn: 'root'
@@ -51,17 +52,17 @@ export class ApartmentService {
 
     let apiUrl = 'http://api.nestoria.co.uk/api?action=search_listings';
 
-    this.http.get<{ request: {}, response: { listings: [] } }>(this.cors_api_url + apiUrl, {params: searchParams }).subscribe((data) => {
+    this.http.get<{ request: {}, response: { listings: Apartment[] } }>(this.cors_api_url + apiUrl, {params: searchParams }).subscribe((data) => {
       this.apartments.push(...data.response.listings);
       this.apartmentsChanged$.next(this.apartments);
     })    
   }
 
-  getApartments() {
+  getApartments(): Apartment[] {
     return this.apartments;
   }
 
-  getApartmentByIndex(index: number) {
+  getApartmentByIndex(index: number): Apartment {
     if(this.apartments[index]) {
           return this.apartments[index];
     }

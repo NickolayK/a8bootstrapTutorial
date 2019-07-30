@@ -24,21 +24,19 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.id = +params['id'];
-      this.mark = params['mark'];
-      
-      if(this.mark === 'bookmarks') {
-        this.apartment = this.bookMarkService.getBookMarkByIndex(this.id);
-      }else {
-        this.apartment = this.apartmentService.getApartmentByIndex(this.id);
-      }
+      const { id, mark } = params;
 
+      mark === 'bookmarks' ? this.apartment = this.bookMarkService.getBookMarkByIndex(id) : this.apartment = this.apartmentService.getApartmentByIndex(id);
       this.cheack = this.bookMarkService.cheackIsBookMarked(this.apartment);
     });
   }
 
   onReturn() {
     this._location.back();
+  }
+
+  getFormatedPrice(): string {
+    return `${this.apartment.price_formatted} - ${this.apartment.price_type}`
   }
 
   onBookMark() {

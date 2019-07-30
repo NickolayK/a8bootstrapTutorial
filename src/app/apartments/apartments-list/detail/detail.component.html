@@ -19,13 +19,13 @@
 
           <div class="caption">
             <h4>{{apartment.title}}</h4>
-            <p> Price : {{ apartment.price_formatted + ' - ' + apartment.price_type }} </p>
+            <p> Price : {{ getFormatedPrice() }} </p>
             <p>
               <button  class="btn " 
                        [ngClass]="{'btn-success' :!cheack , 'btn-danger' : cheack  }" 
                        (click)=onBookMark()>
-                    <span *ngIf='!cheack ; else remove'>Add Bookmark</span>
-                    <ng-template #remove>Remove Bookmark</ng-template>
+                    <span *ngIf='!cheack ; else removeTemplate'>Add Bookmark</span>
+                    <ng-template #removeTemplate>Remove Bookmark</ng-template>
               </button>
             </p>
           </div>

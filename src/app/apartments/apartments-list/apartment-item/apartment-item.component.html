@@ -12,8 +12,8 @@
             <button  class="btn" 
                      [ngClass]="{ 'btn-success': !inBookMark, 'btn-danger': inBookMark }" 
                      (click)=onBookMark()>
-              <span *ngIf='!inBookMark ; else remove'>Add Bookmark</span>
-              <ng-template #remove>Remove Bookmark</ng-template>
+              <span *ngIf='!inBookMark ; else removeTemplate'>Add Bookmark</span>
+              <ng-template #removeTemplate>Remove Bookmark</ng-template>
             </button>
           
           </p>
