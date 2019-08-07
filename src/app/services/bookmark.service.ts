@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Apartment } from '../shared/apartment.interface'
+import { Apartment } from '../shared/apartment.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class BookmarkService {
   cheackIsBookMarked(apartment: any): boolean {
    return this.bookMarks.some((item) => {
      return item === apartment;
-    })
+    });
   }
 
   getBookMarkByIndex(index: number): Apartment {

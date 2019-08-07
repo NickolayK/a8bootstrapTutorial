@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { 
+import {
   HttpClient,
   HttpParams
 } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { Apartment } from '../shared/apartment.interface'
+import { Apartment } from '../shared/apartment.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { Apartment } from '../shared/apartment.interface'
 
 export class ApartmentService {
 
-  private cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+  private corsApiUrl = 'https://cors-anywhere.herokuapp.com/';
   private apartments = [];
   apartmentsChanged$ = new Subject<any[]>();
   currentPage: number;
@@ -32,9 +32,9 @@ export class ApartmentService {
     searchParams = searchParams.append('pretty', '1');
     searchParams = searchParams.append('page', '1');
 
-    let apiUrl = 'http://api.nestoria.co.uk/api?action=search_listings';
+    const apiUrl = 'http://api.nestoria.co.uk/api?action=search_listings';
 
-    this.http.get<{ request : {}, response: { listings: []}}>(this.cors_api_url + apiUrl, {params :searchParams }).subscribe((data) => {
+    this.http.get<{ request: {}, response:{ listings: []}}>(this.corsApiUrl + apiUrl, {params :searchParams }).subscribe((data) => {
       this.apartments = data.response.listings;
       this.apartmentsChanged$.next(this.apartments);
     });
@@ -50,12 +50,12 @@ export class ApartmentService {
     searchParams = searchParams.append('pretty', '1');
     searchParams = searchParams.append('page', this.currentPage.toString());
 
-    let apiUrl = 'http://api.nestoria.co.uk/api?action=search_listings';
+    const apiUrl = 'http://api.nestoria.co.uk/api?action=search_listings';
 
-    this.http.get<{ request: {}, response: { listings: Apartment[] } }>(this.cors_api_url + apiUrl, {params: searchParams }).subscribe((data) => {
+    this.http.get<{ request: {}, response: { listings: Apartment[] } }>(this.corsApiUrl + apiUrl, {params: searchParams }).subscribe((data) => {
       this.apartments.push(...data.response.listings);
       this.apartmentsChanged$.next(this.apartments);
-    })    
+    });
   }
 
   getApartments(): Apartment[] {

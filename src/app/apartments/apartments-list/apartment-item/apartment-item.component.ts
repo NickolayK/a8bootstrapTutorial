@@ -1,4 +1,4 @@
-import { 
+import {
   Component,
   OnInit,
   Input,
@@ -17,11 +17,11 @@ export class ApartmentItemComponent implements OnInit {
   @Input() apartment: any;
   @Input() inBookMark: boolean;
   @Input() index: number;
-  @Output() addBookMark = new EventEmitter<any>()
+  @Output() addBookMark = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() { }
-  
+
   onBookMark() {
     this.addBookMark.emit(this.apartment);
   }

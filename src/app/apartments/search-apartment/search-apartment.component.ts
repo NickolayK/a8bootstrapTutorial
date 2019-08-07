@@ -9,7 +9,7 @@ import { ApartmentService } from 'src/app/services/apartment.service';
 export class SearchApartmentComponent implements OnInit {
 
   searchTerm = '';
-  
+
   constructor(private apartmentService: ApartmentService) { }
 
   onFindApartment() {

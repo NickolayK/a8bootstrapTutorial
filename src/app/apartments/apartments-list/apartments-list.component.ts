@@ -1,7 +1,7 @@
 import {
    Component,
-   OnInit, 
-   OnDestroy 
+   OnInit,
+   OnDestroy
   } from '@angular/core';
 import { ApartmentService } from 'src/app/services/apartment.service';
 import { Subscription } from 'rxjs';
@@ -29,7 +29,7 @@ export class ApartmentsListComponent implements OnInit, OnDestroy {
         this.apartments = data;
     });
 
-    this.bookmarksSunscription = this.bookmarkService.bookMarkChange$.subscribe((data) => {   
+    this.bookmarksSunscription = this.bookmarkService.bookMarkChange$.subscribe((data) => {
         this.bookmarks = data;
     });
 

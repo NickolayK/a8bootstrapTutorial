@@ -18,7 +18,7 @@ export class DetailComponent implements OnInit {
   cheack: boolean;
   constructor(private route: ActivatedRoute,
               private apartmentService: ApartmentService,
-              private _location: Location,
+              private location: Location,
               private bookMarkService: BookmarkService,
   ) { }
 
@@ -32,11 +32,11 @@ export class DetailComponent implements OnInit {
   }
 
   onReturn() {
-    this._location.back();
+    this.location.back();
   }
 
   getFormatedPrice(): string {
-    return `${this.apartment.price_formatted} - ${this.apartment.price_type}`
+    return `${this.apartment.price_formatted} - ${this.apartment.price_type}`;
   }
 
   onBookMark() {
